@@ -10,8 +10,8 @@ def clean(msg):
 	except:
 		pass
 	return(out)
-inputFile = input("[?]Enter the name of your .txt data file: ")
-outputFile = input("[?]Give your output .txt file a name: ")
+inputFile = input("[?]Enter the name of your .txt data file: ") #input raw data file
+outputFile = input("[?]Give your output .txt file a name: ") #write data in output file
 print("(if file already exists, the output will be appended, not overwritten)")
 output = open(outputFile , 'a') # will append to file or make few file
 time.sleep(0.001)
@@ -28,16 +28,16 @@ cleanlines = []
 n = 0
 start_time = time.time()
 for _ in range(len(strlines)):
-	rawmsg = strlines[n].replace("\n","").split(":")
+	rawmsg = strlines[n].replace("\n","").split(":") #remove line breaks
 	try:
-		msg = rawmsg[2]#
+		msg = rawmsg[2] #second split element
 		cleanlines.append(clean(msg))
-		output.write(clean(msg))
+		output.write(clean(msg)) #write element in output file
 	except:
 		cleanlines.append(clean(rawmsg[0]))
 		output.write(clean(rawmsg[0]))
 	if n%5000 == 0:
-		print("[!]Reached message number: " , n)
+		print("[!]Reached message number: " , n) #pogress record
 	n = n + 1
 N = n - 1
 end_time = time.time()
